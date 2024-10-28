@@ -1,0 +1,1 @@
+sudo docker run --mount type=bind,source=/home/jack/curious_moon,target=/data --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -u postgres -d postgres
