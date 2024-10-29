@@ -12,8 +12,7 @@ master:
 	@cat $(MASTER) >> $(BUILD)
 
 import: master
-	@echo "COPY import.master_plan FROM
-	$(CSV) WITH DELIMITER ',' HEADER CSV;" >> $(BUILD)
+	@echo "COPY import.master_plan FROM $(CSV) WITH DELIMITER ',' HEADER CSV;" >> $(BUILD)
 
 normalize: import
 	@cat $(NORMALIZE) >> $(BUILD)
