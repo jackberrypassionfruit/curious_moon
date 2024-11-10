@@ -1,0 +1,27 @@
+before make command:
+    in bash:   
+        >>> createdb enceladus
+    in psql:
+        >>> \c enceladus;
+        >>> create schema if not exists import;
+
+
+with volume mounts:
+
+    ... yaml...
+    volumes:
+      - type: volume
+        source: db-data                     # the name of the volume
+        target: /var/lib/postgresql/data    # the destination in the docker container that the volume will populate @ compose
+
+
+copy from csv to database
+    in psql:
+        >>> \c enceladus;
+        >>> \copy import.inms FROM 'inms.csv' DELIMITER ',' HEADER CSV;
+    * Tried to do this in BDeaver, and by default it batched the inserts by 10_000 rows. Took forever 
+    
+once inside docker container
+    python3 -m venv venv --prompt py_in_docker
+    . ./venv/bin/activate
+    pip3 install csvkit

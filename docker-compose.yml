@@ -1,0 +1,17 @@
+services:
+  curious-postgres:
+    build: .
+    environment:
+     - POSTGRES_PASSWORD=postgres
+    volumes:
+     - type: bind
+       source: /home/jack/repos/curious_moon/curious_data
+       target: /data
+     - type: volume
+       source: db-data
+       target: /var/lib/postgresql/data
+    ports:
+     - 5432:5432
+
+volumes:
+  db-data:
